@@ -1,0 +1,22 @@
+.recommend {
+    display: block;
+    max-width: 450px;
+    margin: 0 auto;
+
+    &:hover, &:focus {
+        .recommend {
+            &__title {
+                color: purple;
+            }
+        }
+    }
+    
+    &__title {
+        color: #000000;
+        margin-top: 20px;
+        font-weight: 700;
+        transition: color 0.3s;
+        text-decoration: none !important;
+    }
+
+}

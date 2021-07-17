@@ -1,0 +1,12 @@
+.bottle {
+    max-width: 500px;
+    
+    .placeholder-center {
+        margin: 0 auto;
+        max-width: 300px;
+        
+        @media screen and (max-width: 767px) {
+            max-width: 80%;
+        }
+    }
+}
