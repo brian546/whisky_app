@@ -5,10 +5,10 @@ class WordCloud extends Component {
     if (this.props.image) {
       return (
         <div className="wordcloud">
-          <h2>Word Cloud</h2>
+          <h2>Key Words from Reviews</h2>
           <figure
             className="placeholder-center placeholder-center--w-100 placeholder-center--wordcloud"
-            data-aos="zoom-in"
+            data-aos="fade-right"
           >
             <img
               className="placeholder-center__item"
@@ -18,14 +18,7 @@ class WordCloud extends Component {
         </div>
       );
     } else {
-      return (
-        <div className="wordcloud">
-          <h2>Word Cloud</h2>
-          <figure className="placeholder-center placeholder-center--w-100 placeholder-center--wordcloud">
-            <img className="placeholder-center__item"></img>
-          </figure>
-        </div>
-      );
+      return null;
     }
   }
 }

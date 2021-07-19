@@ -18,15 +18,18 @@ class PriceInfo extends Component {
       );
       count++;
     }
-
     return (
       <div className="price-info">
-        {/* <figure className="placeholder-center placeholder-center--w-100 placeholder-center--wordcloud">
+        <h2>Price Distribution</h2>
+        <figure
+          className="placeholder-center placeholder-center--w-100 placeholder-center--wordcloud"
+          data-aos="fade-left"
+        >
           <img
             className="placeholder-center__item"
-            src={`data:image/png;base64,${this.props.image}`}
+            src={"data:image/png;base64," + this.props.img}
           ></img>
-        </figure> */}
+        </figure>
         <h2>Shops</h2>
         <div className="price-info__shops">{items}</div>
       </div>
@@ -35,15 +38,54 @@ class PriceInfo extends Component {
 }
 
 function ShopItem(props) {
-  return (
-    <div className="price-info__shop-item" data-aos="fade-up">
-      <div className="price-info__shop-item-info">
-        <h3 className="price-info__shop-item-shop">{props.shop}</h3>
-        <p className="price-info__shop-item-address">{props.address}</p>
+  let address = props.address;
+  let htmlMatch = address.match("https://");
+  let chineseMatch = address.search("號");
+  if (htmlMatch) {
+    return (
+      <div className="price-info__shop-item" data-aos="fade-up">
+        <div className="price-info__shop-item-info">
+          <h3 className="price-info__shop-item-shop">{props.shop}</h3>
+          <p className="price-info__shop-item-address">
+            <a href={address} target="_blank">
+              {address}
+            </a>
+          </p>
+        </div>
+        <p className="price-info__shop-item-price">${props.price}</p>
       </div>
-      <p className="price-info__shop-item-price">${props.price}</p>
-    </div>
-  );
+    );
+  } else if (chineseMatch != -1) {
+    return (
+      <div className="price-info__shop-item" data-aos="fade-up">
+        <div className="price-info__shop-item-info">
+          <h3 className="price-info__shop-item-shop">{props.shop}</h3>
+          <p className="price-info__shop-item-address">
+            <a
+              href={
+                "https://www.google.com.hk/maps/place/" +
+                address.slice(0, chineseMatch + 1)
+              }
+              target="_blank"
+            >
+              {address}
+            </a>
+          </p>
+        </div>
+        <p className="price-info__shop-item-price">${props.price}</p>
+      </div>
+    );
+  } else {
+    return (
+      <div className="price-info__shop-item" data-aos="fade-up">
+        <div className="price-info__shop-item-info">
+          <h3 className="price-info__shop-item-shop">{props.shop}</h3>
+          <p className="price-info__shop-item-address">{props.address}</p>
+        </div>
+        <p className="price-info__shop-item-price">${props.price}</p>
+      </div>
+    );
+  }
 }
 
 export default PriceInfo;

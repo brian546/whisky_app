@@ -23,7 +23,7 @@ class Whisky extends Component {
           data: res["data"],
         });
         AOS.init({
-          duration: 800,
+          duration: 600,
           once: true,
         });
       });
@@ -45,8 +45,7 @@ class Whisky extends Component {
             <h1 className="whisky__title">
               {this.state.data["info"]["Name"] +
                 " " +
-                this.state.data["info"]["Year"] +
-                "-year-old"}
+                this.state.data["info"]["Year"]}
             </h1>
             <Bottle url={url}></Bottle>
           </div>
@@ -65,23 +64,7 @@ class Whisky extends Component {
         </div>
       );
     } else {
-      return (
-        <div className="whisky">
-          <div className="btn-group btn-group--reverse">
-            <a className="btn btn--black btn--back" href="/">
-              Back to Home Page
-            </a>
-          </div>
-          <h1>&nbsp;</h1>
-          <Bottle url={url}></Bottle>
-          <div className="section">
-            <WordCloud />
-          </div>
-          <div className="section">
-            <Slick></Slick>
-          </div>
-        </div>
-      );
+      return null;
     }
   }
 }

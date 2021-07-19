@@ -78,8 +78,8 @@ def price_chart(index):
     #     print(sorted_table['Shop'][i], (' ')*line, sorted_table['Price'][i])
     #     print(sorted_table['Address'][i])
     #     print()
-        
-    return [base64.encodebytes(pic_IObytes.read()).decode('utf-8'), sorted_table]
+    return [base64.b64encode(pic_IObytes.getvalue()).decode("utf-8").replace("\n", "")
+, sorted_table]
 
 
 # %%

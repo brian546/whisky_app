@@ -14,17 +14,25 @@ import {
 } from "react-router-dom";
 
 function App() {
+  let dt = new Date();
   return (
     <div className="inner-container">
       <div className="container">
-        <BrowserRouter>
-          <div className="App">
-            <Switch>
-              <Route exact path="/" component={Home} />
-              <Route path="/whisky/:id" component={Whisky} />
-            </Switch>
-          </div>
-        </BrowserRouter>
+        <main>
+          <BrowserRouter>
+            <div className="App">
+              <Switch>
+                <Route exact path="/" component={Home} />
+                <Route path="/whisky/:id" component={Whisky} />
+              </Switch>
+            </div>
+          </BrowserRouter>
+        </main>
+        <footer>
+          <p className="copyright">
+            Copyright © {dt.getFullYear()} HK WhiskyNav. All Rights Reserved.
+          </p>
+        </footer>
       </div>
     </div>
   );

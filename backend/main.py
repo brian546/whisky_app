@@ -32,11 +32,30 @@ def upload_file():
         # Read the image via file.stream
         index = classifier(img_file.stream)
         df = pd.read_csv("./dataset/top100_whisky.csv")
-        name = df["Name"].iloc[index]
-        year = df["Year"].iloc[index]
+        new_table = df.iloc[index]
+        if isinstance(new_table, pd.Series):
+            new_table = new_table.to_frame().T
+    
+        return jsonify({"whiskies": new_table[["Name","Year"]].to_dict(orient="index")})
+        
+@app.route("/searchFlavours", methods=['GET', 'POST'])
+def search_flavours():
+   if request.method == 'POST':
+        data = request.get_json()
+        vector = list(data['flavours'].items())
+        array = []
+        for i in range(len(vector) - 1):
+            array.append(vector[i][1])
+        # Read the image via file.stream
+        # index = classifier(img_file.stream)
+        # df = pd.read_csv("./dataset/top100_whisky.csv")
+        # name = df["Name"].iloc[index]
+        # year = df["Year"].iloc[index]
 
-        return jsonify({'index': index,
-                        'name': name + " " + year + "-year-old"})
+        return jsonify({
+            "recommend": recommend_vector(array, vector[-1][1]),
+        })
+
         
 @app.route("/whisky/<int:whiskyId>")
 def getData(whiskyId):

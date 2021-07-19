@@ -2,8 +2,9 @@
     display: block;
     max-width: 450px;
     margin: 0 auto;
-
     &:hover, &:focus {
+        text-decoration: none;
+
         .recommend {
             &__title {
                 color: purple;

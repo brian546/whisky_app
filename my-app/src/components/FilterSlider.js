@@ -1,6 +1,9 @@
 import React, { Component } from "react";
 import Slider from "@material-ui/core/Slider";
+import Accordion from "react-bootstrap/Accordion";
+import Button from "react-bootstrap/Button";
 import axios from "axios";
+import "../scss/accordion.scss";
 import "../scss/filterlist.scss";
 
 class FilterSliderList extends Component {
@@ -19,10 +22,12 @@ class FilterSliderList extends Component {
       Malty: 2,
       Fruity: 2,
       Floral: 2,
+      reverse: false,
     };
 
     this.ChildChange = this.ChildChange.bind(this);
     this.handleClick = this.handleClick.bind(this);
+    this.handleReset = this.handleReset.bind(this);
   }
 
   ChildChange(name) {
@@ -35,8 +40,28 @@ class FilterSliderList extends Component {
 
   handleClick() {
     axios
-      .post("http://127.0.0.1:5000/searchFlavour", this.state)
-      .then((res) => {});
+      .post("http://127.0.0.1:5000/searchFlavours", { flavours: this.state })
+      .then((res) => {
+        this.props.handleUpdate(res["data"]["recommend"]);
+      });
+  }
+
+  handleReset() {
+    this.setState({
+      Body: 2,
+      Sweetness: 2,
+      Smoky: 2,
+      Medicinal: 2,
+      Tobacco: 2,
+      Honey: 2,
+      Spicy: 2,
+      Winey: 2,
+      Nutty: 2,
+      Malty: 2,
+      Fruity: 2,
+      Floral: 2,
+      reverse: false,
+    });
   }
 
   render() {
@@ -55,21 +80,45 @@ class FilterSliderList extends Component {
       "Floral",
     ];
     let items = [];
-
     for (let item in flavours) {
       items.push(
         <FilterSlider
           flavour={flavours[item]}
           handleChange={this.ChildChange(flavours[item])}
           key={flavours[item]}
+          value={this.state[flavours[item]]}
         ></FilterSlider>
       );
     }
 
     return (
       <div className="filter-list-wrap">
-        <div className="filter-list">{items}</div>
-        <button onClick={this.handleClick}>Search</button>
+        <div className="filter-list">{items.slice(0, 4)}</div>
+        <Accordion>
+          <Accordion.Collapse eventKey="0" className="accordion__collapse">
+            <div className="filter-list">{items.slice(4)}</div>
+          </Accordion.Collapse>
+          {/* <div className="filter-list">{items.slice(0, 4)}</div> */}
+          <div className="accordion__toggle-wrap">
+            <Accordion.Toggle
+              className="accordion__toggle"
+              eventKey="0"
+              as={Button}
+              variant="link"
+            >
+              <span className="accordion__toggle-expand">More flavours</span>
+              <span className="accordion__toggle-collapse">Less flavours</span>
+            </Accordion.Toggle>
+          </div>
+        </Accordion>
+        <div className="filter-btns">
+          <Button variant="dark" onClick={this.handleClick}>
+            Search
+          </Button>
+          <Button variant="light" onClick={this.handleReset}>
+            Reset
+          </Button>
+        </div>
       </div>
     );
   }
@@ -80,7 +129,6 @@ class FilterSlider extends Component {
     super(props);
     this.state = {
       flavour: this.props.flavour,
-      value: 2,
     };
   }
 
@@ -89,7 +137,7 @@ class FilterSlider extends Component {
       <div className="filter-list__item">
         <p>{this.state.flavour}</p>
         <Slider
-          defaultValue={2}
+          value={this.props.value}
           // getAriaValueText={valuetext}
           aria-labelledby="discrete-slider"
           valueLabelDisplay="auto"

@@ -65,8 +65,8 @@ class Slick_Recommend extends Component {
     }
 
     return (
-      <div class="slider-wrap" data-aos="zoom-in-up" data-aos-delay="200">
-        <Slider {...settings}>{items}</Slider>;
+      <div className="slider-wrap" data-aos="zoom-in-up" data-aos-delay="200">
+        <Slider {...settings}>{items}</Slider>
       </div>
     );
   }
@@ -92,20 +92,22 @@ class Slick_item extends Component {
             </div>
             <div className="recommend__body">
               <p className="recommend__title">
-                {this.props.name + " " + this.props.year + "-year-old"}
+                {this.props.name + " " + this.props.year}
               </p>
             </div>
           </a>
         </div>
       );
     } else {
-      <div className="slider__item">
-        <a className="recommend">
-          <div className="recommend__media">
-            <div className="placeholder-center placeholder-center--1-to-1"></div>
-          </div>
-        </a>
-      </div>;
+      return (
+        <div className="slider__item">
+          <a className="recommend">
+            <div className="recommend__media">
+              <div className="placeholder-center placeholder-center--1-to-1"></div>
+            </div>
+          </a>
+        </div>
+      );
     }
   }
 }

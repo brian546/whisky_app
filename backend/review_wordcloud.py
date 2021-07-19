@@ -32,7 +32,8 @@ def print_word_cloud(index):
     with open('./model/vectorizer.pkl', 'rb') as fin:
         new_vectorizer = pickle.load(fin)
     vector = new_vectorizer.transform([corpus[index]]).toarray()
-    if len(vector[0]) > 0:
+
+    if any([ True if i != 0 else False for i in vector[0]]):
         names = new_vectorizer.get_feature_names()
         names = pd.DataFrame(names,columns=['names'])
         vector = pd.DataFrame(vector[0],columns=['freq'])
@@ -54,4 +55,5 @@ def print_word_cloud(index):
         return base64.b64encode(pic_IObytes.getvalue()).decode('utf-8').replace("\n", "")
     else:
         return None
+    
 # %%

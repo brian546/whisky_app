@@ -1,4 +1,6 @@
+import { refresh } from "aos";
 import React, { Component } from "react";
+import "../scss/loading.scss";
 import "../scss/bottle.scss";
 
 class Bottle extends React.Component {
@@ -9,7 +11,7 @@ class Bottle extends React.Component {
   render() {
     if (this.props.url != null) {
       return (
-        <div className="bottle">
+        <div className={this.props.loading ? "bottle loading" : "bottle"}>
           <figure className="placeholder-center placeholder-center--1-to-1">
             <img
               className="placeholder-center__item"
@@ -17,11 +19,31 @@ class Bottle extends React.Component {
               alt="whisky bottle"
             ></img>
           </figure>
+          <Loading loading={this.props.loading}></Loading>
         </div>
       );
     } else {
       return null;
     }
+  }
+}
+
+function Loading(props) {
+  if (props.loading) {
+    return (
+      <div class="bottle__loading lds-roller">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+    );
+  } else {
+    return null;
   }
 }
 
