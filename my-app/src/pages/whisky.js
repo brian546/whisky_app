@@ -43,9 +43,15 @@ class Whisky extends Component {
           </div>
           <div className="section">
             <h1 className="whisky__title">
-              {this.state.data["info"]["Name"] +
-                " " +
-                this.state.data["info"]["Year"]}
+              <span className="whisky__title-bottle">
+                {this.state.data["info"]["Name"] +
+                  " " +
+                  this.state.data["info"]["Year"] +
+                  " "}
+              </span>
+              <span className="whisky__title-vol">
+                ({this.state.data["volume"]})
+              </span>
             </h1>
             <Bottle url={url}></Bottle>
           </div>

@@ -36,8 +36,9 @@ def watsons_whisky(index):
         name = "Watson's wine  (23 Stores with online shop)"
         address = 'https://www.watsonswine.com/en'
         price = watsons_details['Price'][index]
+        volume = watsons_details['Volume'][index]
 
-    return [name,address,price]
+    return [name,address,price,volume]
 
 def stores_data(index):
     pricecom = price_whisky(index)
@@ -47,7 +48,7 @@ def stores_data(index):
 def price_chart(index):
 
     shop_list, address_list, price_list = price_whisky(x)
-
+    volume = watsons_whisky(x)[3]
     if hkls_whisky(x)[0] != None:
         shop_list.append(hkls_whisky(x)[0])
         address_list.append(hkls_whisky(x)[1])
@@ -79,7 +80,7 @@ def price_chart(index):
     #     print(sorted_table['Address'][i])
     #     print()
     return [base64.b64encode(pic_IObytes.getvalue()).decode("utf-8").replace("\n", "")
-, sorted_table]
+, sorted_table, volume]
 
 
 # %%

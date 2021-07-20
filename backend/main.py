@@ -64,7 +64,7 @@ def getData(whiskyId):
     new_df = df[["Name","Year"]].iloc[whiskyId].to_dict()
     recommend_data = recommend(whiskyId)
     wordcloud = print_word_cloud(whiskyId)
-    price_img, price_table = price_chart(whiskyId)
+    price_img, price_table, volume = price_chart(whiskyId)
     
     # recommend_data, wordcloud, [price_img, price_table] = await asyncio.gather(
     #     recommend(whiskyId),
@@ -82,7 +82,8 @@ def getData(whiskyId):
         "recommend": recommend_data,
         "wordcloud": wordcloud,
         "price_img": price_img,
-        "price_table": price_table
+        "price_table": price_table,
+        "volume": volume
     })
     
 if __name__ == "__main__":
