@@ -84,4 +84,8 @@ def getData(whiskyId):
         "price_img": price_img,
         "price_table": price_table
     })
+    
+if __name__ == "__main__":
+    app.run()
 
+ 
