@@ -1,3 +1,8 @@
+body {
+    color: #fff;
+    background-color: #000;
+}
+
 .inner-container {
     padding: 60px 0;
 
@@ -8,7 +13,12 @@
 
 .container {
     max-width: 768px;
-    padding: 0 20px;
+    padding: 0 25px;
+
+
+    @media screen and (max-width: 767px) {
+        padding: 0 20px;
+    }
 }
 
 .section {
@@ -25,8 +35,20 @@ h2 {
     }
 }
 
+.error {
+    color: #ff0000
+}
+
 .copyright {
     margin: 50px 0 0;
-    color: #555555;
+    color: #fff;
     font-size: 14px;
+}
+
+a, .btn-link {
+    color: #C1A480;
+
+    &:hover, &:focus {
+        color: #CF937E;
+    }
 }

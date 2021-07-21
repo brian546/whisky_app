@@ -3,8 +3,8 @@ import Slider from "@material-ui/core/Slider";
 import Accordion from "react-bootstrap/Accordion";
 import Button from "react-bootstrap/Button";
 import axios from "axios";
-import "../scss/accordion.scss";
 import "../scss/filterlist.scss";
+import "../scss/accordion.scss";
 
 class FilterSliderList extends Component {
   constructor(props) {
@@ -79,24 +79,37 @@ class FilterSliderList extends Component {
       "Fruity",
       "Floral",
     ];
+    let top4 = ["Smoky", "Honey", "Winey", "Fruity"];
     let items = [];
+    let specials = [];
     for (let item in flavours) {
-      items.push(
-        <FilterSlider
-          flavour={flavours[item]}
-          handleChange={this.ChildChange(flavours[item])}
-          key={flavours[item]}
-          value={this.state[flavours[item]]}
-        ></FilterSlider>
-      );
+      if (top4.includes(flavours[item])) {
+        specials.push(
+          <FilterSlider
+            flavour={flavours[item]}
+            handleChange={this.ChildChange(flavours[item])}
+            key={flavours[item]}
+            value={this.state[flavours[item]]}
+          ></FilterSlider>
+        );
+      } else {
+        items.push(
+          <FilterSlider
+            flavour={flavours[item]}
+            handleChange={this.ChildChange(flavours[item])}
+            key={flavours[item]}
+            value={this.state[flavours[item]]}
+          ></FilterSlider>
+        );
+      }
     }
 
     return (
       <div className="filter-list-wrap">
-        <div className="filter-list">{items.slice(0, 4)}</div>
+        <div className="filter-list">{specials}</div>
         <Accordion>
           <Accordion.Collapse eventKey="0" className="accordion__collapse">
-            <div className="filter-list">{items.slice(4)}</div>
+            <div className="filter-list">{items}</div>
           </Accordion.Collapse>
           {/* <div className="filter-list">{items.slice(0, 4)}</div> */}
           <div className="accordion__toggle-wrap">

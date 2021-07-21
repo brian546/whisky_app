@@ -20,18 +20,22 @@ class PriceInfo extends Component {
     }
     return (
       <div className="price-info">
-        <h2>Price Distribution</h2>
-        <figure
-          className="placeholder-center placeholder-center--w-100 placeholder-center--wordcloud"
-          data-aos="fade-left"
-        >
-          <img
-            className="placeholder-center__item"
-            src={"data:image/png;base64," + this.props.img}
-          ></img>
-        </figure>
-        <h2>Shops</h2>
-        <div className="price-info__shops">{items}</div>
+        <div className="price-info__distribution">
+          <h2>Price Distribution</h2>
+          <figure
+            className="placeholder-center placeholder-center--w-100 placeholder-center--wordcloud"
+            data-aos="fade-left"
+          >
+            <img
+              className="placeholder-center__item"
+              src={"data:image/png;base64," + this.props.img}
+            ></img>
+          </figure>
+        </div>
+        <div classNam="price-info__shops-wrap">
+          <h2>Shops</h2>
+          <div className="price-info__shops">{items}</div>
+        </div>
       </div>
     );
   }

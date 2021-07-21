@@ -31,12 +31,15 @@ def upload_file():
         img_file = request.files['image']
         # Read the image via file.stream
         index = classifier(img_file.stream)
-        df = pd.read_csv("./dataset/top100_whisky.csv")
-        new_table = df.iloc[index]
-        if isinstance(new_table, pd.Series):
-            new_table = new_table.to_frame().T
-    
-        return jsonify({"whiskies": new_table[["Name","Year"]].to_dict(orient="index")})
+        if index != 'N/A': 
+            df = pd.read_csv("./dataset/top100_whisky.csv")
+            new_table = df.iloc[index]
+            if isinstance(new_table, pd.Series):
+                new_table = new_table.to_frame().T
+        
+            return jsonify({"whiskies": new_table[["Name","Year"]].to_dict(orient="index")})
+        else:
+            return jsonify({"whiskies": 'N/A'})
         
 @app.route("/searchFlavours", methods=['GET', 'POST'])
 def search_flavours():
@@ -59,10 +62,11 @@ def search_flavours():
         
 @app.route("/whisky/<int:whiskyId>")
 def getData(whiskyId):
-    print(f"started at {time.strftime('%X')}")
+    # print(f"started at {time.strftime('%X')}")
     df = pd.read_csv("./dataset/top100_whisky.csv")
     new_df = df[["Name","Year"]].iloc[whiskyId].to_dict()
     recommend_data = recommend(whiskyId)
+    opposite_recommend_data = recommend(whiskyId,True)
     wordcloud = print_word_cloud(whiskyId)
     price_img, price_table, volume = price_chart(whiskyId)
     
@@ -72,7 +76,7 @@ def getData(whiskyId):
     #     price_chart(whiskyId)
     # )
     
-    print(f"finished at {time.strftime('%X')}")
+    # print(f"finished at {time.strftime('%X')}")
     
     price_table = price_table.to_dict(orient="index")
 
@@ -80,6 +84,7 @@ def getData(whiskyId):
     return jsonify({
         "info": new_df,
         "recommend": recommend_data,
+        "opposite_recommend": opposite_recommend_data,
         "wordcloud": wordcloud,
         "price_img": price_img,
         "price_table": price_table,

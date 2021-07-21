@@ -1,4 +1,12 @@
 .price-info {
+    &__distribution {
+        margin-bottom: 40px;
+    }
+
+    &__shops {
+        margin-top: -20px;
+    }
+    
     &__shop-item {
         display: flex;
         justify-content: space-between;

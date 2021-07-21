@@ -19,7 +19,7 @@ for name in whisky_name:
     names = word_tokenize(name.lower())
     total_names = total_names + names
 
-_stopwords = set(stopwords.words('english') + list(punctuation) + ['whisky', 'whiskey', 'year', 'old', 'like','taste', 'scotch', 'doublewood', 'bottle','drink', 'best', 'one', 'two', 'three', 'four','five','six','seven','eight','nine','ten'] + total_names)
+_stopwords = set(stopwords.words('english') + list(punctuation) + ['whisky', 'whiskey', 'year', 'old', 'good', 'like','taste', 'scotch', 'doublewood', 'bottle','drink', 'best', 'one', 'two', 'three', 'four','five','six','seven','eight','nine','ten'] + total_names)
 
 class LemmaTokenizer():
     def __init__(self):            

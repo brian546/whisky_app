@@ -22,6 +22,10 @@
     &__toggle {
         padding-left: 0;
         padding-right: 0;
+        
+        &:hover, &:focus {
+            text-decoration: underline;
+        }
 
         &-expand {
             display: inline-block;

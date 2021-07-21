@@ -77,12 +77,24 @@ def recommend(index, reverse=False):
     whisky_list = pd.read_csv('./dataset/top100_whisky.csv')
     whisky_list['New_Name'] = whisky_list['Name'].transform(lambda x: x.strip().lower())
     name = whisky_list['New_Name'].iloc[index]
-    new_table = whisky_list[whisky_list['New_Name'].isin(np.append(similarity(df, name, reverse).to_numpy(),[name]))]
+    if not reverse:
+        match_list = np.append([name],similarity(df, name, reverse).to_numpy())
+    else:
+        match_list = similarity(df, name, reverse).to_numpy()
+
+    new_table = whisky_list[whisky_list['New_Name'].isin(match_list)]
 
     if isinstance(new_table, pd.Series):
         new_table = new_table.to_frame().T
         
     new_table = new_table[new_table.index != index]
+
+          
+    # sorterIndex = dict(zip(match_list, range(len(match_list))))
+
+    # new_table['Rank'] = new_table['New_Name'].map(sorterIndex)
+        
+    # new_table = new_table[new_table.index != index].sort_values(['Rank'])
     
     if len(new_table) > 0:
         return new_table[["Name","Year"]].to_dict(orient="index")
@@ -94,10 +106,17 @@ def recommend(index, reverse=False):
 def recommend_vector(vector, reverse=False):
     whisky_list = pd.read_csv('./dataset/top100_whisky.csv')
     whisky_list['New_Name'] = whisky_list['Name'].transform(lambda x: x.strip().lower())
-    new_table = whisky_list[whisky_list['New_Name'].isin(similarity_vector(df, vector, reverse))]
+    match_list = similarity_vector(df, vector, reverse).to_numpy()
+    new_table = whisky_list[whisky_list['New_Name'].isin(match_list)]
     
     if isinstance(new_table, pd.Series):
         new_table = new_table.to_frame().T
+        
+    # sorterIndex = dict(zip(match_list, range(len(match_list))))
+
+    # new_table['Rank'] = new_table['New_Name'].map(sorterIndex)
+        
+    # new_table = new_table.sort_values(['Rank'])
     
     if len(new_table) > 0:
         return new_table[["Name","Year"]].to_dict(orient="index")

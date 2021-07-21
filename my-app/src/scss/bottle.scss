@@ -10,6 +10,13 @@
     position: relative;
     max-width: 500px;
 
+
+    .placeholder-center {
+        &__item {
+            margin: auto auto auto 0;
+        }
+    }
+
     &.loading {
         &:before {
         position: absolute;
@@ -21,6 +28,7 @@
         background-color: rgba(150, 150, 150, 0.7);
         content: "";
         }
+
 
     }
 
@@ -38,10 +46,5 @@
     
     .placeholder-center {
         margin: 0 auto;
-        max-width: 300px;
-        
-        @media screen and (max-width: 767px) {
-            max-width: 80%;
-        }
     }
 }

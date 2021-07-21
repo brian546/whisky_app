@@ -14,8 +14,7 @@ from PIL import Image
 # if img_file != None:
 def classifier(img_file):
     img_temp = Image.open(img_file)
-    if img_temp.mode == "P":
-        img_temp = img_temp.convert('RGB')
+    img_temp = img_temp.convert('RGB')
     img_temp.save('./testing/test1/1.jpg')
     # with open(os.path.join('testing/test1/','1.jpg'), 'wb') as file:
         # file.write(img_file.getbuffer())

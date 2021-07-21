@@ -67,6 +67,11 @@ class Whisky extends Component {
           <div className="section">
             <Slick recommend={this.state.data["recommend"]}></Slick>
           </div>
+          <div className="section">
+            <Slick
+              opposite_recommend={this.state.data["opposite_recommend"]}
+            ></Slick>
+          </div>
         </div>
       );
     } else {
@@ -76,11 +81,37 @@ class Whisky extends Component {
 }
 
 function Slick(props) {
-  if (props.recommend) {
+  if (props.recommend || props.opposite_recommend) {
+    let similar = null;
+    let opposite = null;
+    if (props.recommend) {
+      similar = (
+        <div>
+          <h2>Recommendation</h2>
+          <Slick_Recommend data={props.recommend}></Slick_Recommend>
+        </div>
+      );
+    } else {
+      similar = (
+        <div>
+          <h2>Recommendation</h2>
+          <p>No fiited whiskies available in Hong Kong</p>
+        </div>
+      );
+    }
+    if (props.opposite_recommend) {
+      similar = (
+        <div>
+          <h2>Recommendation (Opposite)</h2>
+          <Slick_Recommend data={props.opposite_recommend}></Slick_Recommend>
+        </div>
+      );
+    }
+
     return (
       <div>
-        <h2>Recommendation</h2>
-        <Slick_Recommend data={props.recommend}></Slick_Recommend>
+        {similar}
+        {opposite}
       </div>
     );
   } else {

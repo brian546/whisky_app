@@ -26,6 +26,7 @@ class Slick_Recommend extends Component {
           settings: {
             slidesToShow: 2,
             slidesToScroll: 2,
+            arrows: false,
           },
         },
         {
@@ -33,6 +34,7 @@ class Slick_Recommend extends Component {
           settings: {
             slidesToShow: 1,
             slidesToScroll: 1,
+            arrows: false,
           },
         },
       ],

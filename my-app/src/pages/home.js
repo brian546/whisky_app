@@ -33,9 +33,18 @@ class Home extends Component {
         loading_image: false,
         search_whisky_data: res["data"]["whiskies"],
       });
-      let recommend = document.getElementById("flavour-recommend-1");
-      if (window.scrollY + window.innerHeight < recommend.offsetTop + 50) {
-        scroll.scrollTo(recommend.offsetTop - 100);
+      if (res["data"]["whiskies"]) {
+        let recommend = document.getElementById("flavour-recommend-1");
+
+        if (this.state.search_whisky_data != "N/A") {
+          if (window.scrollY + window.innerHeight < recommend.offsetTop + 100) {
+            scroll.scrollTo(recommend.offsetTop - 100);
+          }
+        } else {
+          if (window.scrollY + window.innerHeight < recommend.offsetTop + 50) {
+            scroll.scrollTo(recommend.offsetTop - window.innerHeight + 50);
+          }
+        }
       }
     });
   };
@@ -59,13 +68,14 @@ class Home extends Component {
       falvour_recommend_list: data,
       activated_falvour_search: true,
     });
-    let recommend = document.getElementById("flavour-recommend-2");
-    console.log(window.scrollY + window.innerHeight);
-    console.log(recommend.offsetTop);
-    if (window.scrollY + window.innerHeight < recommend.offsetTop + 100) {
-      scroll.scrollTo(recommend.offsetTop - 100);
+    if (data) {
+      let recommend = document.getElementById("flavour-recommend-2");
+
+      if (window.scrollY + window.innerHeight < recommend.offsetTop + 100) {
+        scroll.scrollTo(recommend.offsetTop - 100);
+      }
+      Aos.refresh();
     }
-    Aos.refresh();
   };
 
   render() {
@@ -118,14 +128,10 @@ class Comfirm_predict extends Component {
   render() {
     if (this.props.data) {
       let whiskies = this.props.data;
-      let index = Object.keys(whiskies)[0];
+      if (whiskies != "N/A") {
+        let index = Object.keys(whiskies)[0];
 
-      return (
-        <div>
-          {/* <p className="confirm-predict">
-            Is this what you are finding:{" "}
-            <a href={"/whisky/" + props.index}>{props.name}</a>
-          </p> */}
+        return (
           <div className="flavour-recommend" id="flavour-recommend-1">
             <h2>Is this what you are finding?</h2>
             <div className="flavour-recommend__list">
@@ -136,8 +142,16 @@ class Comfirm_predict extends Component {
               />
             </div>
           </div>
-        </div>
-      );
+        );
+      } else {
+        return (
+          <div className="flavour-recommend" id="flavour-recommend-1">
+            <p className="error">
+              Your image seems not to be whisky. Please try another image
+            </p>
+          </div>
+        );
+      }
     } else {
       return null;
     }
