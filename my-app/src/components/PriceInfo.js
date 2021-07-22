@@ -6,7 +6,8 @@ class PriceInfo extends Component {
     let items = [];
     let data = this.props.price_table;
     let count = 0;
-    if (data.length > 0) {
+
+    if (Object.keys(data).length > 0) {
       for (let item in data) {
         items.push(
           <ShopItem
@@ -32,7 +33,7 @@ class PriceInfo extends Component {
               ></img>
             </figure>
           </div>
-          <div classNam="price-info__shops-wrap">
+          <div className="price-info__shops-wrap">
             <h2>Shops</h2>
             <div className="price-info__shops">{items}</div>
           </div>
@@ -41,7 +42,7 @@ class PriceInfo extends Component {
     } else {
       return (
         <div className="price-info">
-          <div classNam="price-info__shops-wrap">
+          <div className="price-info__shops-wrap">
             <h2>Shops</h2>
             <p>Not available in Hong Kong</p>
           </div>
