@@ -30,7 +30,7 @@ def hkls_whisky(index):
 
 def watsons_whisky(index):
     watsons_details = pd.read_csv('./dataset/watsons_details.csv')
-    name, address, price = None, None, None
+    name, address, price, volume = None, None, None, None
 
     if watsons_details['Stock'][index] == True:
         name = "Watson's wine  (23 Stores with online shop)"
@@ -45,10 +45,11 @@ def stores_data(index):
     
 #%%
 
-def price_chart(index):
+def price_chart(x):
 
     shop_list, address_list, price_list = price_whisky(x)
-    volume = watsons_whisky(x)[3]
+    volume = watsons_whisky(x)[3] 
+    
     if hkls_whisky(x)[0] != None:
         shop_list.append(hkls_whisky(x)[0])
         address_list.append(hkls_whisky(x)[1])
@@ -81,10 +82,9 @@ def price_chart(index):
     #     print()
     return [base64.b64encode(pic_IObytes.getvalue()).decode("utf-8").replace("\n", "")
 , sorted_table, volume]
+    
 
 
 # %%
-x=1
-price_chart(x)
 
 # %%

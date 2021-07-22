@@ -6,38 +6,48 @@ class PriceInfo extends Component {
     let items = [];
     let data = this.props.price_table;
     let count = 0;
-
-    for (let item in data) {
-      items.push(
-        <ShopItem
-          shop={data[item]["Shop"]}
-          address={data[item]["Address"]}
-          price={data[item]["Price"]}
-          key={count}
-        ></ShopItem>
+    if (data.length > 0) {
+      for (let item in data) {
+        items.push(
+          <ShopItem
+            shop={data[item]["Shop"]}
+            address={data[item]["Address"]}
+            price={data[item]["Price"]}
+            key={count}
+          ></ShopItem>
+        );
+        count++;
+      }
+      return (
+        <div className="price-info">
+          <div className="price-info__distribution">
+            <h2>Price Distribution</h2>
+            <figure
+              className="placeholder-center placeholder-center--w-100 placeholder-center--wordcloud"
+              data-aos="fade-left"
+            >
+              <img
+                className="placeholder-center__item"
+                src={"data:image/png;base64," + this.props.img}
+              ></img>
+            </figure>
+          </div>
+          <div classNam="price-info__shops-wrap">
+            <h2>Shops</h2>
+            <div className="price-info__shops">{items}</div>
+          </div>
+        </div>
       );
-      count++;
+    } else {
+      return (
+        <div className="price-info">
+          <div classNam="price-info__shops-wrap">
+            <h2>Shops</h2>
+            <p>Not available in Hong Kong</p>
+          </div>
+        </div>
+      );
     }
-    return (
-      <div className="price-info">
-        <div className="price-info__distribution">
-          <h2>Price Distribution</h2>
-          <figure
-            className="placeholder-center placeholder-center--w-100 placeholder-center--wordcloud"
-            data-aos="fade-left"
-          >
-            <img
-              className="placeholder-center__item"
-              src={"data:image/png;base64," + this.props.img}
-            ></img>
-          </figure>
-        </div>
-        <div classNam="price-info__shops-wrap">
-          <h2>Shops</h2>
-          <div className="price-info__shops">{items}</div>
-        </div>
-      </div>
-    );
   }
 }
 

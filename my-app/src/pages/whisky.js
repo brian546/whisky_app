@@ -50,7 +50,9 @@ class Whisky extends Component {
                   " "}
               </span>
               <span className="whisky__title-vol">
-                ({this.state.data["volume"]})
+                {this.state.data["volume"]
+                  ? "(" + this.state.data["volume"] + ")"
+                  : null}
               </span>
             </h1>
             <Bottle url={url}></Bottle>

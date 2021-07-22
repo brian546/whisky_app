@@ -55,5 +55,5 @@ def print_word_cloud(index):
         return base64.b64encode(pic_IObytes.getvalue()).decode('utf-8').replace("\n", "")
     else:
         return None
-    
-# %%
+
+#%%

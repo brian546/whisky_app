@@ -82,7 +82,7 @@ def recommend(index, reverse=False):
     else:
         match_list = similarity(df, name, reverse).to_numpy()
 
-    new_table = whisky_list[whisky_list['New_Name'].isin(match_list)]
+    new_table = whisky_list[whisky_list['New_Name'].isin(match_list if len(match_list) > 0 else [])]
 
     if isinstance(new_table, pd.Series):
         new_table = new_table.to_frame().T
@@ -107,7 +107,7 @@ def recommend_vector(vector, reverse=False):
     whisky_list = pd.read_csv('./dataset/top100_whisky.csv')
     whisky_list['New_Name'] = whisky_list['Name'].transform(lambda x: x.strip().lower())
     match_list = similarity_vector(df, vector, reverse).to_numpy()
-    new_table = whisky_list[whisky_list['New_Name'].isin(match_list)]
+    new_table = whisky_list[whisky_list['New_Name'].isin(match_list if len(match_list) > 0 else [])]
     
     if isinstance(new_table, pd.Series):
         new_table = new_table.to_frame().T
