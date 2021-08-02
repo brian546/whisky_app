@@ -34,5 +34,13 @@ The recommendation system is built upon the database of flavour scores of differ
 ## App Development
 We integrated the image recognition model and recommendation system into an app using Flask as backend system and React as frontend server. 
 
+### Home Page
+In the home page, there are 2 kinds of searching method provided to users, one recognizing the whisky from the image and one allowing user to set their prefered flavour profile by adjust the sliding bar to recommend whiskies with similar flavours.
 
+To use the searching method of image recognition, the user just need to upload their image to the app, and the app will send the image back to our flask server to process. Once the image is classified as a specfic whisky we have defined, the result together with the link redirected to the detail page of that whisky will be returned back to the home page. 
+
+If the users want to search using their customized flavour profile, they may choose the second method in which they can adjust the sliding bar of the 4 suggested flavours. If they want more delicated flavour, they may click "More Flavours" button to expand the list showing more available flavours. Once clicking "Submit" button, the customized profile will be sent back to server to analyze using recommendation system which use consine distance to compare the similarity between the flavour profile of different whiskies. The system will return a list of whiskies under the same distillery and the top 5 of other distilleries with similar taste. 
+
+### Detail Page
+Each whisky has its own detail page. In the page, the user can figure out the price distribution of the whisky and shops having it in Hong Kong, so that they can buy it with the cheapest price. Moreover, the page also shows the word cloud of key words common in reviews, letting user to have a sence what this whisky taste like before purchasing. At the bottom of the page, there are 2 sliders presenting whiskies with similar or opposite flavour profile.
 
