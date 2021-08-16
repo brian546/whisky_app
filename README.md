@@ -37,10 +37,29 @@ We integrated the image recognition model and recommendation system into an app 
 ### Home Page
 In the home page, there are 2 kinds of searching method provided to users, one recognizing the whisky from the image and one allowing user to set their prefered flavour profile by adjust the sliding bar to recommend whiskies with similar flavours.
 
+<img width="380" alt="image" src="https://user-images.githubusercontent.com/43593664/129532821-68afd885-2ae3-46bd-bb78-d860b0de4bbf.png">
+
+
 To use the searching method of image recognition, the user just need to upload their image to the app, and the app will send the image back to our flask server to process. Once the image is classified as a specfic whisky we have defined, the result together with the link redirected to the detail page of that whisky will be returned back to the home page. 
+
+<img width="380" alt="image" src="https://user-images.githubusercontent.com/43593664/129532868-00b00cbb-b37a-4e04-a8fc-6d42068ea889.png">
+
 
 If the users want to search using their customized flavour profile, they may choose the second method in which they can adjust the sliding bar of the 4 suggested flavours. If they want more delicated flavour, they may click "More Flavours" button to expand the list showing more available flavours. Once clicking "Submit" button, the customized profile will be sent back to server to analyze using recommendation system which use consine distance to compare the similarity between the flavour profile of different whiskies. The system will return a list of whiskies under the same distillery and the top 5 of other distilleries with similar taste. 
 
+<img width="380" alt="image" src="https://user-images.githubusercontent.com/43593664/129532986-206bc0b9-215c-4d6b-8217-85d639e7dee1.png">
+
+
 ### Detail Page
-Each whisky has its own detail page. In the page, the user can figure out the price distribution of the whisky and shops having it in Hong Kong, so that they can buy it with the cheapest price. Moreover, the page also shows the word cloud of key words common in reviews, letting user to have a sence what this whisky taste like before purchasing. At the bottom of the page, there are 2 sliders presenting whiskies with similar or opposite flavour profile.
+Each whisky has its own detail page. This page shows the word cloud of key words common in reviews, letting user to have a sence what this whisky taste like before purchasing. The words in the reviews of whiskies were tokenized and transformed into term frequency–inverse document frequency (tf-idf). The higher tf-idf implies that the corresponding word is common in the reviews of a particulat whisky but rare in the reviews of others.
+
+<img width="380" alt="image" src="https://user-images.githubusercontent.com/43593664/129532305-ba1faa13-3983-451a-aa1a-96eb676c3a54.png">
+
+Moreover, the user can figure out the price distribution of the whisky and shops having it in Hong Kong, so that they can buy it with the cheapest price.
+
+<img width="380" alt="image" src="https://user-images.githubusercontent.com/43593664/129532351-82188c15-3798-484e-a687-5d86e315fd2e.png">
+
+At the bottom of the page, there are 2 sliders presenting whiskies with similar or opposite flavour profile.
+  
+<img width="380" alt="image" src="https://user-images.githubusercontent.com/43593664/129532382-e36208d2-5227-412c-ad64-882e25de0bc2.png">
 
