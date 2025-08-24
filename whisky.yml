@@ -28,6 +28,7 @@ dependencies:
   - libwebp-base=1.2.0=h9ed2024_0
   - llvm-openmp=10.0.0=h28b9765_0
   - lz4-c=1.9.3=h23ab428_0
+  
   - matplotlib=3.3.4=py37hecd8cb5_0
   - matplotlib-base=3.3.4=py37h8b3ea08_0
   - mkl=2021.2.0=hecd8cb5_269
