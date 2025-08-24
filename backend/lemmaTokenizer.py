@@ -22,6 +22,7 @@ for name in whisky_name:
 _stopwords = set(stopwords.words('english') + list(punctuation) + ['whisky', 'whiskey', 'year', 'old', 'good', 'like','taste', 'scotch', 'doublewood', 'bottle','drink', 'best', 'one', 'two', 'three', 'four','five','six','seven','eight','nine','ten'] + total_names)
 
 class LemmaTokenizer():
+    ""
     def __init__(self):            
         self.wnl = WordNetLemmatizer()
         

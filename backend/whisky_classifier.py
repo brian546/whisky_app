@@ -35,7 +35,8 @@ def classifier(img_file):
     # ***================= Classify the whisky in testing folder =================***
 
     #============ Creating image file reader ============
-    def preprocess_image(image): # Input an image, resize it to 224, normalize the data from 0-255 to 0-1
+    def preprocess_image(image): 
+        '''Input an image, resize it to 224, normalize the data from 0-255 to 0-1'''
         image = tf.image.decode_jpeg(image, channels=3)
         image = tf.image.crop_to_bounding_box(image,int(image.shape[0]*0.2),0,int(image.shape[0]*0.6),int(image.shape[1])) # Cutting the left 20% and right 20% out
         # plt.imshow(image.numpy(), cmap='gray') # Print the cut image for testing
