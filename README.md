@@ -23,10 +23,10 @@ The difference in data format and language create extra difficulties when combin
 ## Image Recognition
 
 ### Image Preprocessing
-We had more than 2500 images, around 25 per whiskies. We first cropped the images to contain bottle only, helping the model focus on bottle only. To train our model to recognize the whiskies in different angle and background, we applied various image augmentations to all of the images randomly. The augmentation included crop, Baussian blur, contrast adjustment, noise, zoom, rotation, and shearing. In total, over 25000 images were generated. These images would be, in turns, used to train our model.
+We collected over 2,500 images, approximately 25 per whiskey. We cropped each image to focus solely on the bottle, enabling the model to concentrate on the bottle itself. To enhance the model’s ability to recognize whiskeys from various angles and backgrounds, we applied random image augmentations, including cropping, Gaussian blur, contrast adjustment, noise, zoom, rotation, and shearing. This process generated more than 25,000 images, which were then used to train our model.
 
 ### Build Model
-To classify the 100 whiskies in terms of images, we trained InceptionV3 model, which is a well-developed nerual network model for image recognition, with the augmented images of whiskies. We freezed its convolutional part and replaced its fully-connected part with 3 full-connected layers, with 200 nodes per inner layer. The outer layer contains 101 nodes, representing 100 kinds of whiskies and 1 non-whisky class. 
+To classify 100 whiskey types based on images, we trained an InceptionV3 model, a robust neural network designed for image recognition, using the augmented whiskey images. We froze the convolutional layers and replaced the fully connected layers with three new fully connected layers, each containing 200 nodes. The output layer has 101 nodes, corresponding to 100 whiskey types and one non-whiskey class.
 
 ## Recommendation System
 The recommendation system is built upon the database of flavour scores of different whisky distilleries from the international whisky community using consine distance but no Euclidean distance. It is because the balance between flavours is more crutial than their absolute values. Consine distance focuses on the pattern of flavour profile instead of the individual value, which fits our goal. 
@@ -35,7 +35,7 @@ The recommendation system is built upon the database of flavour scores of differ
 We integrated the image recognition model and recommendation system into an app using Flask as backend system and React as frontend server. 
 
 ### Home Page
-In the home page, there are 2 kinds of searching method provided to users, one recognizing the whisky from the image and one allowing user to set their prefered flavour profile by adjust the sliding bar to recommend whiskies with similar flavours.
+In the home page, there are 2 kinds of searching methods provided to users, one recognizing the whisky from the image and one allowing user to set their prefered flavour profile by adjust the sliding bar to recommend whiskies with similar flavours.
 
 <img width="380" alt="image" src="https://user-images.githubusercontent.com/43593664/129532821-68afd885-2ae3-46bd-bb78-d860b0de4bbf.png">
 
