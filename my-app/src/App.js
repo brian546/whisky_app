@@ -7,10 +7,7 @@ import Whisky from "./pages/whisky";
 import {
   BrowserRouter,
   Route,
-  Link,
-  match,
   Switch,
-  Redirect,
 } from "react-router-dom";
 
 function App() {
